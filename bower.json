@@ -1,0 +1,8 @@
+{
+  "name": "web-historian",
+  "dependencies": {
+    "jquery": "*",
+    "lodash": "~2.4.1",
+    "mustache": "~0.8.2"
+  }
+}

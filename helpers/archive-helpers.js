@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
-var _ = require('underscore');
+var request = require('request');
+var _ = require('lodash');
 
 /*
  * You will need to reuse the same paths many times over in the course of this sprint.
@@ -25,17 +26,21 @@ exports.initialize = function(pathsObj){
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
 
-exports.readListOfUrls = function(){
+
+var writeUrls = fs.createWriteStream(exports.paths.list, {flags: 'a'});
+
+function loadInit(){
+  var urls = fs.readFileSync(exports.paths.list).toString().trim().split('\n');
+  var urlT = _.indexBy(urls, function(e){return e});
+  return urlT;
 };
 
-exports.isUrlInList = function(){
+exports.urlTable = loadInit();
+exports.writeFile = function(url){
+  var write = fs.createWriteStream(exports.paths.archivedSites + url);
+  request("http:/" + url).pipe(write);
 };
 
-exports.addUrlToList = function(){
-};
-
-exports.isURLArchived = function(){
-};
-
-exports.downloadUrls = function(){
+exports.writeNewUrl = function (url){
+  writeUrls.write(url + '\n');
 };
