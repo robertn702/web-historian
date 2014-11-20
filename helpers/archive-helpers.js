@@ -42,5 +42,7 @@ exports.writeFile = function(url){
 };
 
 exports.writeNewUrl = function (url){
-  writeUrls.write(url + '\n');
+  if(url.length < 20){
+    writeUrls.write(url + '\n');
+  }
 };

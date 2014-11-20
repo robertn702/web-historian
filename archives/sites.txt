@@ -1,2 +1,5 @@
 /www.google.com
 /www.yahoo.com
+/www.hackreactor.com
+/www.reddit.com
+/www.youtube.com

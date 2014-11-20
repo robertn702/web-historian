@@ -7,5 +7,9 @@ var _ = require('lodash');
 var urlT = archive.urlTable;
 
 _.each(urlT, function (url) {
-  archive.writeFile(url);
+  if(url.length < 25){
+    archive.writeFile(url);
+  }
 });
+
+process.stdout.write('WORKING')
